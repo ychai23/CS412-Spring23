@@ -1,0 +1,8 @@
+<div>
+  <a>Weather App</a>
+  <form>
+    <input type="text" required="true" minlength="1" name="city">
+    <button (click)="Submit()">Submit</button>
+  </form>
+  <app-display [data]="temp"></app-display>
+</div>
