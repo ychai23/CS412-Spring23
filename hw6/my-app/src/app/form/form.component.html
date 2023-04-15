@@ -1,8 +1,8 @@
 <div>
   <a>Weather App</a>
-  <form>
-    <input type="text" required="true" minlength="1" name="city">
-    <button (click)="Submit()">Submit</button>
+  <form #weatherForm="ngForm" (ngSubmit)="onSubmit(weatherForm.value)">
+    <input type="text" required="true" minlength="1" name="city" ngModel>
+    <button type="submit" value="submit">Submit</button>
   </form>
-  <app-display [data]="temp"></app-display>
+  <app-display [data]="weather"></app-display>
 </div>

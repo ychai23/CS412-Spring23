@@ -1,6 +1,7 @@
 <div *ngIf="data">
-    <!-- <div *ngFor="let info of data.current.temp">
-      Weather in Boston is currently {{info}}
-    </div> -->
-    Weather in Boston is currently {{data}}
+  <ul>
+    <li *ngFor="let w of data, let i = index">
+      {{w.description}}, {{w.main}}
+    </li>
+  </ul>
 </div>

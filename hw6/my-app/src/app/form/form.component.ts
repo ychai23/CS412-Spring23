@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WeatherService } from '../service/weather.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -7,20 +8,30 @@ import { WeatherService } from '../service/weather.service';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
+  weatherForm = this.formBuilder.group({
+    city: ''
+  });
   city: string | undefined;
   info: any;
   temp : Int16Array | undefined;
+  weather: any;
 
-  constructor(private service: WeatherService) { }
+  constructor(
+    private service: WeatherService,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
 
   }
 
-  Submit(): void {
-    this.service.getWeather({city: this.city, units: this.info}).subscribe(result => {
+  onSubmit(result: { city: String; }) {
+    console.log(result.city);
+    this.service.getWeather({city: result.city, units: "imperial"}).subscribe(result => {
       this.info = result;
-      this.temp = this.info.current.temp;
+      this.weather = this.info.weather;
     });
+    this.weatherForm.reset();
   }
+
 }
