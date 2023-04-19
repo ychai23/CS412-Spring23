@@ -11,7 +11,9 @@ export class WeatherService {
     //use an observable to fetch data...returning an observable here
     getWeather(wxOptions: { city: any; units: any; }) {
       // return this.http.get(`https://api.openweathermap.org/data/2.5/onecall?lat=41.98&lon=71.32&appid=${config.API_KEY}&units=imperial`);
-      return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${wxOptions.city}&appid=${config.API_KEY}`)
+      // return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${wxOptions.city}&appid=${config.API_KEY}`)
+      let result = this.http.get(`http://localhost:3001/weather/${wxOptions.city}`);
+      return result;
     }
     //Injections are done in constructor
     constructor(private http: HttpClient) { }

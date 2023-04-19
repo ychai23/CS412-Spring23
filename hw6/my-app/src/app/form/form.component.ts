@@ -26,10 +26,9 @@ export class FormComponent {
   }
 
   onSubmit(result: { city: String; }) {
-    console.log(result.city);
     this.service.getWeather({city: result.city, units: "imperial"}).subscribe(result => {
       this.info = result;
-      this.weather = this.info.weather;
+      this.weather = this.info.results.weather;
     });
     this.weatherForm.reset();
   }
